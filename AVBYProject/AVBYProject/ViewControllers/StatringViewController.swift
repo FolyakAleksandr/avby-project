@@ -14,6 +14,7 @@ final class StatringViewController: UIViewController {
         layoutNextButton()
         appearanceNextButton()
         logicNextButton()
+        setupNavigationBar()
     }
 
     // MARK: - Methods
@@ -37,6 +38,10 @@ final class StatringViewController: UIViewController {
 
     private func logicNextButton() {
         nextButton.addTarget(self, action: #selector(tappedNextButton), for: .touchDown)
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.backButtonTitle = ""
     }
 
     @objc func tappedNextButton() {
