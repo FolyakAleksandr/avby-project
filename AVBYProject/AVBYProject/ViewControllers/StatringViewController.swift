@@ -4,22 +4,19 @@ final class StatringViewController: UIViewController {
     // MARK: - Private Properties
 
     private let nextButton = UIButton()
+    private let tabBar = TabBarController()
 
     // MARK: - Lyfe cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        appearanceView()
+        configureBackgroundViewController()
         layoutNextButton()
         appearanceNextButton()
         logicNextButton()
     }
 
     // MARK: - Methods
-
-    private func appearanceView() {
-        view.backgroundColor = UIColor(named: "backgroundView")
-    }
 
     private func layoutNextButton() {
         view.addSubview(nextButton)
@@ -43,6 +40,6 @@ final class StatringViewController: UIViewController {
     }
 
     @objc func tappedNextButton() {
-        navigationController?.pushViewController(MainViewController(), animated: true)
+        navigationController?.pushViewController(tabBar.configureTabBarController(), animated: true)
     }
 }

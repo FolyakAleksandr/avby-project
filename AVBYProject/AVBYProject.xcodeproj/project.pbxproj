@@ -7,15 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0173B7392BA5EB5D003CB472 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0173B7382BA5EB5D003CB472 /* Extension.swift */; };
 		017FBF192BA5CC930017F3C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FBF182BA5CC930017F3C8 /* AppDelegate.swift */; };
 		017FBF1B2BA5CC930017F3C8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FBF1A2BA5CC930017F3C8 /* SceneDelegate.swift */; };
 		017FBF1D2BA5CC930017F3C8 /* StatringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FBF1C2BA5CC930017F3C8 /* StatringViewController.swift */; };
 		017FBF222BA5CC940017F3C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017FBF212BA5CC940017F3C8 /* Assets.xcassets */; };
 		017FBF252BA5CC940017F3C8 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 017FBF242BA5CC940017F3C8 /* Base */; };
 		017FBF312BA5D7B00017F3C8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FBF302BA5D7B00017F3C8 /* MainViewController.swift */; };
+		017FBF332BA5DEBD0017F3C8 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FBF322BA5DEBD0017F3C8 /* FavoritesViewController.swift */; };
+		017FBF352BA5DF0D0017F3C8 /* AdvertisementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FBF342BA5DF0D0017F3C8 /* AdvertisementsViewController.swift */; };
+		017FBF372BA5DF3F0017F3C8 /* DialoguesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FBF362BA5DF3F0017F3C8 /* DialoguesViewController.swift */; };
+		017FBF392BA5DF600017F3C8 /* OtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FBF382BA5DF600017F3C8 /* OtherViewController.swift */; };
+		017FBF3B2BA5E9700017F3C8 /* Source-TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FBF3A2BA5E9700017F3C8 /* Source-TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0173B7382BA5EB5D003CB472 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		017FBF152BA5CC930017F3C8 /* AVBYProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVBYProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		017FBF182BA5CC930017F3C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		017FBF1A2BA5CC930017F3C8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +31,11 @@
 		017FBF242BA5CC940017F3C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		017FBF262BA5CC940017F3C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		017FBF302BA5D7B00017F3C8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		017FBF322BA5DEBD0017F3C8 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		017FBF342BA5DF0D0017F3C8 /* AdvertisementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementsViewController.swift; sourceTree = "<group>"; };
+		017FBF362BA5DF3F0017F3C8 /* DialoguesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialoguesViewController.swift; sourceTree = "<group>"; };
+		017FBF382BA5DF600017F3C8 /* OtherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherViewController.swift; sourceTree = "<group>"; };
+		017FBF3A2BA5E9700017F3C8 /* Source-TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Source-TabBarController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0173B73A2BA5EC07003CB472 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0173B7382BA5EB5D003CB472 /* Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		017FBF0C2BA5CC930017F3C8 = {
 			isa = PBXGroup;
 			children = (
@@ -86,8 +106,14 @@
 		017FBF2E2BA5CF3B0017F3C8 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0173B73A2BA5EC07003CB472 /* Extension */,
 				017FBF1C2BA5CC930017F3C8 /* StatringViewController.swift */,
 				017FBF302BA5D7B00017F3C8 /* MainViewController.swift */,
+				017FBF322BA5DEBD0017F3C8 /* FavoritesViewController.swift */,
+				017FBF342BA5DF0D0017F3C8 /* AdvertisementsViewController.swift */,
+				017FBF362BA5DF3F0017F3C8 /* DialoguesViewController.swift */,
+				017FBF382BA5DF600017F3C8 /* OtherViewController.swift */,
+				017FBF3A2BA5E9700017F3C8 /* Source-TabBarController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -170,8 +196,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				017FBF1D2BA5CC930017F3C8 /* StatringViewController.swift in Sources */,
+				017FBF372BA5DF3F0017F3C8 /* DialoguesViewController.swift in Sources */,
 				017FBF192BA5CC930017F3C8 /* AppDelegate.swift in Sources */,
+				017FBF352BA5DF0D0017F3C8 /* AdvertisementsViewController.swift in Sources */,
 				017FBF1B2BA5CC930017F3C8 /* SceneDelegate.swift in Sources */,
+				0173B7392BA5EB5D003CB472 /* Extension.swift in Sources */,
+				017FBF392BA5DF600017F3C8 /* OtherViewController.swift in Sources */,
+				017FBF332BA5DEBD0017F3C8 /* FavoritesViewController.swift in Sources */,
+				017FBF3B2BA5E9700017F3C8 /* Source-TabBarController.swift in Sources */,
 				017FBF312BA5D7B00017F3C8 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
