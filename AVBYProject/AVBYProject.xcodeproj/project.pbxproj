@@ -9,19 +9,21 @@
 /* Begin PBXBuildFile section */
 		017FBF192BA5CC930017F3C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FBF182BA5CC930017F3C8 /* AppDelegate.swift */; };
 		017FBF1B2BA5CC930017F3C8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FBF1A2BA5CC930017F3C8 /* SceneDelegate.swift */; };
-		017FBF1D2BA5CC930017F3C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FBF1C2BA5CC930017F3C8 /* ViewController.swift */; };
+		017FBF1D2BA5CC930017F3C8 /* StatringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FBF1C2BA5CC930017F3C8 /* StatringViewController.swift */; };
 		017FBF222BA5CC940017F3C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017FBF212BA5CC940017F3C8 /* Assets.xcassets */; };
 		017FBF252BA5CC940017F3C8 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 017FBF242BA5CC940017F3C8 /* Base */; };
+		017FBF312BA5D7B00017F3C8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FBF302BA5D7B00017F3C8 /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		017FBF152BA5CC930017F3C8 /* AVBYProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVBYProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		017FBF182BA5CC930017F3C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		017FBF1A2BA5CC930017F3C8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		017FBF1C2BA5CC930017F3C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		017FBF1C2BA5CC930017F3C8 /* StatringViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatringViewController.swift; sourceTree = "<group>"; };
 		017FBF212BA5CC940017F3C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		017FBF242BA5CC940017F3C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		017FBF262BA5CC940017F3C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		017FBF302BA5D7B00017F3C8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,10 +56,10 @@
 		017FBF172BA5CC930017F3C8 /* AVBYProject */ = {
 			isa = PBXGroup;
 			children = (
-				017FBF2F2BA5CF570017F3C8 /* Models */,
-				017FBF2E2BA5CF3B0017F3C8 /* ViewControllers */,
-				017FBF2D2BA5CF280017F3C8 /* Sources */,
 				017FBF2C2BA5CF0A0017F3C8 /* Application */,
+				017FBF2F2BA5CF570017F3C8 /* Models */,
+				017FBF2D2BA5CF280017F3C8 /* Sources */,
+				017FBF2E2BA5CF3B0017F3C8 /* ViewControllers */,
 			);
 			path = AVBYProject;
 			sourceTree = "<group>";
@@ -84,7 +86,8 @@
 		017FBF2E2BA5CF3B0017F3C8 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				017FBF1C2BA5CC930017F3C8 /* ViewController.swift */,
+				017FBF1C2BA5CC930017F3C8 /* StatringViewController.swift */,
+				017FBF302BA5D7B00017F3C8 /* MainViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -166,9 +169,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				017FBF1D2BA5CC930017F3C8 /* ViewController.swift in Sources */,
+				017FBF1D2BA5CC930017F3C8 /* StatringViewController.swift in Sources */,
 				017FBF192BA5CC930017F3C8 /* AppDelegate.swift in Sources */,
 				017FBF1B2BA5CC930017F3C8 /* SceneDelegate.swift in Sources */,
+				017FBF312BA5D7B00017F3C8 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
