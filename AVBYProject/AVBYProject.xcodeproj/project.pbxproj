@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		012888512BB00A17006D7D03 /* CarsCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012888502BB00A17006D7D03 /* CarsCustomCell.swift */; };
 		0173B7392BA5EB5D003CB472 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0173B7382BA5EB5D003CB472 /* Extension.swift */; };
 		017FBF192BA5CC930017F3C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FBF182BA5CC930017F3C8 /* AppDelegate.swift */; };
 		017FBF1B2BA5CC930017F3C8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FBF1A2BA5CC930017F3C8 /* SceneDelegate.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		012888502BB00A17006D7D03 /* CarsCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsCustomCell.swift; sourceTree = "<group>"; };
 		0173B7382BA5EB5D003CB472 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		017FBF152BA5CC930017F3C8 /* AVBYProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVBYProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		017FBF182BA5CC930017F3C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0128884F2BB00461006D7D03 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				012888502BB00A17006D7D03 /* CarsCustomCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		0173B73A2BA5EC07003CB472 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +116,7 @@
 		017FBF2E2BA5CF3B0017F3C8 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0128884F2BB00461006D7D03 /* Cells */,
 				0173B73A2BA5EC07003CB472 /* Extension */,
 				017FBF1C2BA5CC930017F3C8 /* StatringViewController.swift */,
 				017FBF302BA5D7B00017F3C8 /* MainViewController.swift */,
@@ -201,6 +212,7 @@
 				017FBF352BA5DF0D0017F3C8 /* AdvertisementsViewController.swift in Sources */,
 				017FBF1B2BA5CC930017F3C8 /* SceneDelegate.swift in Sources */,
 				0173B7392BA5EB5D003CB472 /* Extension.swift in Sources */,
+				012888512BB00A17006D7D03 /* CarsCustomCell.swift in Sources */,
 				017FBF392BA5DF600017F3C8 /* OtherViewController.swift in Sources */,
 				017FBF332BA5DEBD0017F3C8 /* FavoritesViewController.swift in Sources */,
 				017FBF3B2BA5E9700017F3C8 /* Source-TabBarController.swift in Sources */,

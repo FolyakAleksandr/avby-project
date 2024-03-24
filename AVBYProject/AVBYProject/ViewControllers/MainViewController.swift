@@ -19,13 +19,16 @@ class MainViewController: UIViewController {
         view.addSubview(carTableView)
         carTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            carTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 14),
+            carTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             carTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             carTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             carTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
         ])
         carTableView.delegate = self
         carTableView.dataSource = self
+        carTableView.separatorStyle = .none
+        carTableView.backgroundColor = UIColor(named: "backgroundView")
+        carTableView.register(CarsCustomCell.self, forCellReuseIdentifier: "CarsCustomCell")
     }
 }
 
@@ -37,6 +40,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CarsCustomCell", for: indexPath) as? CarsCustomCell else { return UITableViewCell() }
+        cell.backgroundColor = UIColor(named: "backgroundView")
+        cell.selectionStyle = .none
+        return cell
     }
 }
