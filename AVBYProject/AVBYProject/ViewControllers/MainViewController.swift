@@ -30,6 +30,7 @@ class MainViewController: UIViewController {
         carTableView.separatorStyle = .none
         carTableView.backgroundColor = UIColor(named: "backgroundView")
         carTableView.register(CarsCustomCell.self, forCellReuseIdentifier: "CarsCustomCell")
+        carTableView.showsVerticalScrollIndicator = false
     }
 }
 

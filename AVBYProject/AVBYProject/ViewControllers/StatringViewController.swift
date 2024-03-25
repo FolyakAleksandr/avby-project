@@ -41,11 +41,10 @@ final class StatringViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = UIColor(named: "background-nav-tab")
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationItem.backButtonTitle = ""
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.backgroundColor = UIColor(named: "background-nav-tab")
-        navigationController?.navigationBar.layer.borderColor = UIColor.systemGray3.cgColor
-        navigationController?.navigationBar.layer.borderWidth = 0.7
     }
 
     @objc func tappedNextButton() {

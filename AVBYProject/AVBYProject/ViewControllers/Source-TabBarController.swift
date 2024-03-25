@@ -9,16 +9,14 @@ struct TabBarController {
     
     // tabBarController
     let mainTabBarController = UITabBarController()
-    
     func configureTabBarController() -> UITabBarController {
+        let appearance = UITabBarAppearance()
+        appearance.backgroundColor = UIColor(named: "background-nav-tab")
         mainTabBarController.viewControllers = [rootTabBarController, favoritesVC, advertisementsVC, dialogueVC, otherVC]
         mainTabBarController.selectedViewController = rootTabBarController
-        mainTabBarController.tabBar.isTranslucent = false
+        mainTabBarController.tabBar.scrollEdgeAppearance = appearance
         mainTabBarController.tabBar.barTintColor = UIColor(named: "tabBarTintColorSelected")
         mainTabBarController.tabBar.unselectedItemTintColor = UIColor(named: "tabBarTintColorUnselected")
-        mainTabBarController.tabBar.backgroundColor = UIColor(named: "background-nav-tab")
-        mainTabBarController.tabBar.layer.borderWidth = 0.7
-        mainTabBarController.tabBar.layer.borderColor = UIColor.systemGray3.cgColor
         
         rootTabBarController.tabBarItem = UITabBarItem(
             title: "Поиск",
