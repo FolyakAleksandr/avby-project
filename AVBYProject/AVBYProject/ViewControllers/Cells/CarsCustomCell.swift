@@ -65,7 +65,10 @@ class CarsCustomCell: UITableViewCell {
 
     private let imageVinView = UIImageView()
 
+    private let placeSaleLabel = UILabel()
+
     private let infoCar = Car.addCar()
+    private let dateSale = Car.dateSale()
 
     // MARK: - Life cycle
 
@@ -79,6 +82,7 @@ class CarsCustomCell: UITableViewCell {
         configureCollectionView()
         configureLayoutCollectionView()
         settingStackTwoViews()
+        setupPlaceSaleLabel()
     }
 
     @available(*, unavailable)
@@ -105,7 +109,7 @@ class CarsCustomCell: UITableViewCell {
             el.translatesAutoresizingMaskIntoConstraints = false
         }
 
-        for elem in [bookmarkButton, nameCarLabel, priceCarLabel, carPhotosCollectionView, descriptionLabel, stackTwoViews] {
+        for elem in [bookmarkButton, nameCarLabel, priceCarLabel, carPhotosCollectionView, descriptionLabel, stackTwoViews, placeSaleLabel] {
             mainView.addSubview(elem)
             elem.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -154,7 +158,6 @@ class CarsCustomCell: UITableViewCell {
             stackTwoViews.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 10),
             stackTwoViews.widthAnchor.constraint(equalToConstant: 100),
             stackTwoViews.heightAnchor.constraint(equalToConstant: 20),
-            stackTwoViews.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -16),
 
             // nameTopView
             nameTopView.centerYAnchor.constraint(equalTo: topView.centerYAnchor),
@@ -165,16 +168,23 @@ class CarsCustomCell: UITableViewCell {
             imageTopView.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 5),
             imageTopView.widthAnchor.constraint(equalToConstant: 11),
             imageTopView.heightAnchor.constraint(equalToConstant: 10),
-            
+
             // nameVinView
             nameVinView.centerYAnchor.constraint(equalTo: vinView.centerYAnchor),
             nameVinView.leadingAnchor.constraint(equalTo: vinView.leadingAnchor, constant: 5),
-            
+
             // imageTopView
             imageVinView.centerYAnchor.constraint(equalTo: vinView.centerYAnchor),
             imageVinView.trailingAnchor.constraint(equalTo: vinView.trailingAnchor, constant: -5),
             imageVinView.widthAnchor.constraint(equalToConstant: 14),
             imageVinView.heightAnchor.constraint(equalToConstant: 13),
+
+            // placeSaleLabel
+            placeSaleLabel.topAnchor.constraint(equalTo: stackTwoViews.bottomAnchor, constant: 10),
+            placeSaleLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 10),
+            placeSaleLabel.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: 10),
+            placeSaleLabel.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -16)
+
         ])
     }
 
@@ -214,6 +224,11 @@ class CarsCustomCell: UITableViewCell {
         imageTopView.tintColor = .black
         imageVinView.image = UIImage(systemName: "checkmark")
         imageVinView.tintColor = .white
+    }
+    
+    private func setupPlaceSaleLabel() {
+        placeSaleLabel.font = UIFont.systemFont(ofSize: 14)
+        placeSaleLabel.textColor = UIColor(named: "colorPlaceSaleLabel")
     }
 
     // MARK: - Public method
@@ -260,6 +275,7 @@ class CarsCustomCell: UITableViewCell {
         photos = model.imageCar
         descriptionLabel.text = "\(model.description.year.rawValue) г., \(model.description.transmission.rawValue), \(model.description.capacity.rawValue) л, \(model.description.typeEngine.rawValue), \(model.description.body.rawValue), \(resultMileage) км"
         descriptionLabel.font = UIFont.systemFont(ofSize: 15)
+        placeSaleLabel.text = "\(model.city.rawValue) · \(dateSale)"
     }
 }
 

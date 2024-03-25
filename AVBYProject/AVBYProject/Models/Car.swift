@@ -5,13 +5,15 @@ class Car {
     let price: PriceRublesCar
     let imageCar: [UIImage?]
     let description: DescriptionCar
+    let city: City
 
-    init(name: NameCars, restyling: RestylingCars, price: PriceRublesCar, imageCar: [UIImage?], description: DescriptionCar) {
+    init(name: NameCars, restyling: RestylingCars, price: PriceRublesCar, imageCar: [UIImage?], description: DescriptionCar, city: City) {
         self.name = name
         self.restyling = restyling
         self.price = price
         self.imageCar = imageCar
         self.description = description
+        self.city = city
     }
 
     static func addCar() -> [Car] {
@@ -28,7 +30,8 @@ class Car {
                 capacity: Capacity.four,
                 typeEngine: .gasoline,
                 body: .cupe,
-                mileage: .nissan350z)),
+                mileage: .nissan350z),
+                  city: .moscow),
 
             .init(name: .toyotaAltezza, restyling: .no, price: .toyotaAltezza, imageCar: [
                 UIImage(named: "altezza.1"),
@@ -42,7 +45,8 @@ class Car {
                 capacity: Capacity.two,
                 typeEngine: .gasoline,
                 body: .sedan,
-                mileage: .toyotaAltezza)),
+                mileage: .toyotaAltezza),
+                  city: .omsk),
 
             .init(name: .toyotaCresta, restyling: .yes, price: .toyotaCresta, imageCar: [
                 UIImage(named: "cresta100.1"),
@@ -56,7 +60,8 @@ class Car {
                 capacity: Capacity.three,
                 typeEngine: .gasoline,
                 body: .sedan,
-                mileage: .toyotaCresta)),
+                mileage: .toyotaCresta),
+                  city: .vladivostok),
 
             .init(name: .mitsubishiEvo, restyling: .no, price: .mitsubishiEvo, imageCar: [
                 UIImage(named: "evo10.1"),
@@ -70,7 +75,8 @@ class Car {
                 capacity: Capacity.two,
                 typeEngine: .gasoline,
                 body: .sedan,
-                mileage: .mitsubishiEvo)),
+                mileage: .mitsubishiEvo),
+                  city: .spb),
 
             .init(name: .nissanGTR, restyling: .no, price: .nissanGTR, imageCar: [
                 UIImage(named: "gtr.1"),
@@ -84,7 +90,8 @@ class Car {
                 capacity: Capacity.three,
                 typeEngine: .gasoline,
                 body: .cupe,
-                mileage: .nissanGTR)),
+                mileage: .nissanGTR),
+                  city: .moscow),
 
             .init(name: .toyotaMark, restyling: .no, price: .toyotaMark, imageCar: [
                 UIImage(named: "mark100.1"),
@@ -98,7 +105,8 @@ class Car {
                 capacity: Capacity.three,
                 typeEngine: .gasoline,
                 body: .sedan,
-                mileage: .toyotaMark)),
+                mileage: .toyotaMark),
+                  city: .vladivostok),
 
             .init(name: .mazdaRX8, restyling: .yes, price: .mazdaRX8, imageCar: [
                 UIImage(named: "rx8.1"),
@@ -112,8 +120,14 @@ class Car {
                 capacity: Capacity.one,
                 typeEngine: .gasoline,
                 body: .cupe,
-                mileage: .mazdaRX8))
+                mileage: .mazdaRX8),
+                  city: .omsk)
         ]
+    }
+    static func dateSale() -> String {
+        let number = Int.random(in: 1..<31)
+        let month = ["дек", "янв", "фев", "мар", "апр", "мая", "июня", "июля", "авг", "сен", "окт", "ноя"].randomElement() ?? ""
+        return "\(String(number)) \(month)"
     }
 }
 
@@ -201,4 +215,10 @@ enum Mileage: Int {
     case nissanGTR = 135000
     case toyotaMark = 331405
     case mazdaRX8 = 144900
+}
+enum City: String {
+    case moscow = "Москва"
+    case omsk = "Омск"
+    case spb = "Санкт-Петербург"
+    case vladivostok = "Владивосток"
 }
