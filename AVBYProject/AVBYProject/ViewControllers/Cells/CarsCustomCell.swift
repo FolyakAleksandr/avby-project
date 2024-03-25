@@ -69,6 +69,29 @@ class CarsCustomCell: UITableViewCell {
 
     private let infoCar = Car.addCar()
     private let dateSale = Car.dateSale()
+    private let priceCredit = Car.randomPriceCredit()
+
+    private let line: UIView = {
+        let line = UIView()
+        line.backgroundColor = .systemGray4
+        return line
+    }()
+
+    private let creditView: UIView = {
+        let creditView = UIView()
+        creditView.backgroundColor = .clear
+        return creditView
+    }()
+
+    private let creditLabel: UILabel = {
+        let creditLabel = UILabel()
+        creditLabel.text = "Кредит"
+        creditLabel.font = UIFont.systemFont(ofSize: 14)
+        creditLabel.textColor = UIColor(named: "creditColor")
+        return creditLabel
+    }()
+
+    private let priceCreditLabel = UILabel()
 
     // MARK: - Life cycle
 
@@ -109,7 +132,7 @@ class CarsCustomCell: UITableViewCell {
             el.translatesAutoresizingMaskIntoConstraints = false
         }
 
-        for elem in [bookmarkButton, nameCarLabel, priceCarLabel, carPhotosCollectionView, descriptionLabel, stackTwoViews, placeSaleLabel] {
+        for elem in [bookmarkButton, nameCarLabel, priceCarLabel, carPhotosCollectionView, descriptionLabel, stackTwoViews, placeSaleLabel, line, creditView, creditLabel, priceCreditLabel] {
             mainView.addSubview(elem)
             elem.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -183,8 +206,27 @@ class CarsCustomCell: UITableViewCell {
             placeSaleLabel.topAnchor.constraint(equalTo: stackTwoViews.bottomAnchor, constant: 10),
             placeSaleLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 10),
             placeSaleLabel.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: 10),
-            placeSaleLabel.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -16)
 
+            // line
+            line.topAnchor.constraint(equalTo: placeSaleLabel.bottomAnchor, constant: 10),
+            line.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 10),
+            line.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: 0),
+            line.heightAnchor.constraint(equalToConstant: 0.5),
+
+            // creditView
+            creditView.topAnchor.constraint(equalTo: line.bottomAnchor, constant: 10),
+            creditView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 10),
+            creditView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -10),
+            creditView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -14),
+            creditView.heightAnchor.constraint(equalToConstant: 30),
+
+            // creditLabel
+            creditLabel.centerYAnchor.constraint(equalTo: creditView.centerYAnchor),
+            creditLabel.leadingAnchor.constraint(equalTo: creditView.leadingAnchor, constant: 0),
+
+            // priceCreditLabel
+            priceCreditLabel.centerYAnchor.constraint(equalTo: creditView.centerYAnchor),
+            priceCreditLabel.trailingAnchor.constraint(equalTo: creditView.trailingAnchor, constant: 0)
         ])
     }
 
@@ -225,7 +267,7 @@ class CarsCustomCell: UITableViewCell {
         imageVinView.image = UIImage(systemName: "checkmark")
         imageVinView.tintColor = .white
     }
-    
+
     private func setupPlaceSaleLabel() {
         placeSaleLabel.font = UIFont.systemFont(ofSize: 14)
         placeSaleLabel.textColor = UIColor(named: "colorPlaceSaleLabel")
@@ -238,15 +280,22 @@ class CarsCustomCell: UITableViewCell {
         let price: NSNumber = model.price.rawValue as NSNumber
         let mileage: NSNumber = model.description.mileage.rawValue as NSNumber
         let numberFormatter = NumberFormatter()
+
         numberFormatter.groupingSeparator = " "
         numberFormatter.groupingSize = 3
         numberFormatter.usesGroupingSeparator = true
+
         let resultMileage = numberFormatter.string(from: mileage) ?? ""
         let priceRubles = numberFormatter.string(from: price) ?? ""
         let priceDollars = numberFormatter.string(from: ((price as! Int) / 92) as NSNumber) ?? ""
+
         let strRubles = " р.  "
         let strAbout = "≈ "
         let strDollar = "$"
+        let ot = "от "
+        let usd = " USD"
+        let month = "/месяц"
+        let priceCredit = priceCredit
 
         let attributesForPriceRubles: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor(named: "colorText") ?? UIColor.black,
@@ -260,6 +309,14 @@ class CarsCustomCell: UITableViewCell {
             .font: UIFont.systemFont(ofSize: 14),
             .foregroundColor: UIColor(named: "colorDollar") ?? UIColor()
         ]
+        let attributesForPriceCreditLabel: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold),
+            .foregroundColor: UIColor(named: "creditColor") ?? UIColor()
+        ]
+        let attributesForWords: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 14),
+            .foregroundColor: UIColor(named: "creditColor") ?? UIColor()
+        ]
 
         let attrString1 = NSAttributedString(string: priceRubles, attributes: attributesForPriceRubles)
         let attrString2 = NSAttributedString(string: priceDollars, attributes: attibutesForZnakAndDollar)
@@ -267,8 +324,16 @@ class CarsCustomCell: UITableViewCell {
         let attrString4 = NSAttributedString(string: strAbout, attributes: attibutesForZnakAndDollar)
         let attrString5 = NSAttributedString(string: strDollar, attributes: attibutesForZnakAndDollar)
 
+        let attrForPrice = NSAttributedString(string: priceCredit, attributes: attributesForPriceCreditLabel)
+        let attrForUsd = NSAttributedString(string: usd, attributes: attributesForPriceCreditLabel)
+        let attrForOt = NSAttributedString(string: ot, attributes: attributesForWords)
+        let attrForMonth = NSAttributedString(string: month, attributes: attributesForWords)
+
         let mutableString = NSMutableAttributedString()
         [attrString1, attrString3, attrString4, attrString2, attrString5].forEach { mutableString.append($0) }
+
+        let mutablePriceLabel = NSMutableAttributedString()
+        [attrForOt, attrForPrice, attrForUsd, attrForMonth].forEach { mutablePriceLabel.append($0) }
 
         priceCarLabel.attributedText = mutableString
         nameCarLabel.text = model.name.rawValue + model.restyling.rawValue
@@ -276,6 +341,7 @@ class CarsCustomCell: UITableViewCell {
         descriptionLabel.text = "\(model.description.year.rawValue) г., \(model.description.transmission.rawValue), \(model.description.capacity.rawValue) л, \(model.description.typeEngine.rawValue), \(model.description.body.rawValue), \(resultMileage) км"
         descriptionLabel.font = UIFont.systemFont(ofSize: 15)
         placeSaleLabel.text = "\(model.city.rawValue) · \(dateSale)"
+        priceCreditLabel.attributedText = mutablePriceLabel
     }
 }
 
