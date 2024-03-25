@@ -19,7 +19,52 @@ class CarsCustomCell: UITableViewCell {
             carPhotosCollectionView.reloadData()
         }
     }
+
     private let descriptionLabel = UILabel()
+
+    private let stackTwoViews: UIStackView = {
+        let stackTwoViews = UIStackView()
+        stackTwoViews.axis = .horizontal
+        stackTwoViews.distribution = .fillProportionally
+        stackTwoViews.alignment = .fill
+        stackTwoViews.spacing = 3
+        return stackTwoViews
+    }()
+
+    private let topView: UIView = {
+        let topView = UIView()
+        topView.backgroundColor = UIColor(named: "topView")
+        topView.layer.cornerRadius = 2
+        return topView
+    }()
+
+    private let nameTopView: UILabel = {
+        let nameTopView = UILabel()
+        nameTopView.text = "ТОП"
+        nameTopView.textColor = .black
+        nameTopView.font = UIFont.systemFont(ofSize: 11, weight: UIFont.Weight.bold)
+        return nameTopView
+    }()
+
+    private let imageTopView = UIImageView()
+
+    private let vinView: UIView = {
+        let vinView = UIView()
+        vinView.backgroundColor = UIColor(named: "vinView")
+        vinView.layer.cornerRadius = 2
+        return vinView
+    }()
+
+    private let nameVinView: UILabel = {
+        let nameVinView = UILabel()
+        nameVinView.text = "VIN"
+        nameVinView.textColor = .white
+        nameVinView.font = UIFont.systemFont(ofSize: 11, weight: UIFont.Weight.bold)
+        return nameVinView
+    }()
+
+    private let imageVinView = UIImageView()
+
     private let infoCar = Car.addCar()
 
     // MARK: - Life cycle
@@ -33,6 +78,7 @@ class CarsCustomCell: UITableViewCell {
         configureNameCarLabel()
         configureCollectionView()
         configureLayoutCollectionView()
+        settingStackTwoViews()
     }
 
     @available(*, unavailable)
@@ -49,7 +95,17 @@ class CarsCustomCell: UITableViewCell {
         bookmarkButton.addSubview(imageViewForButton)
         imageViewForButton.translatesAutoresizingMaskIntoConstraints = false
 
-        for elem in [bookmarkButton, nameCarLabel, priceCarLabel, carPhotosCollectionView, descriptionLabel] {
+        for el in [nameTopView, imageTopView] {
+            topView.addSubview(el)
+            el.translatesAutoresizingMaskIntoConstraints = false
+        }
+
+        for el in [nameVinView, imageVinView] {
+            vinView.addSubview(el)
+            el.translatesAutoresizingMaskIntoConstraints = false
+        }
+
+        for elem in [bookmarkButton, nameCarLabel, priceCarLabel, carPhotosCollectionView, descriptionLabel, stackTwoViews] {
             mainView.addSubview(elem)
             elem.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -87,12 +143,38 @@ class CarsCustomCell: UITableViewCell {
             carPhotosCollectionView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 10),
             carPhotosCollectionView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -10),
             carPhotosCollectionView.heightAnchor.constraint(equalToConstant: 230),
-            
+
             // descriptionLabel
             descriptionLabel.topAnchor.constraint(equalTo: carPhotosCollectionView.bottomAnchor, constant: 10),
             descriptionLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 10),
             descriptionLabel.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -10),
-            descriptionLabel.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -16)
+
+            // stackTwoViews
+            stackTwoViews.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10),
+            stackTwoViews.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 10),
+            stackTwoViews.widthAnchor.constraint(equalToConstant: 100),
+            stackTwoViews.heightAnchor.constraint(equalToConstant: 20),
+            stackTwoViews.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -16),
+
+            // nameTopView
+            nameTopView.centerYAnchor.constraint(equalTo: topView.centerYAnchor),
+            nameTopView.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -5),
+
+            // imageTopView
+            imageTopView.centerYAnchor.constraint(equalTo: topView.centerYAnchor),
+            imageTopView.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 5),
+            imageTopView.widthAnchor.constraint(equalToConstant: 11),
+            imageTopView.heightAnchor.constraint(equalToConstant: 10),
+            
+            // nameVinView
+            nameVinView.centerYAnchor.constraint(equalTo: vinView.centerYAnchor),
+            nameVinView.leadingAnchor.constraint(equalTo: vinView.leadingAnchor, constant: 5),
+            
+            // imageTopView
+            imageVinView.centerYAnchor.constraint(equalTo: vinView.centerYAnchor),
+            imageVinView.trailingAnchor.constraint(equalTo: vinView.trailingAnchor, constant: -5),
+            imageVinView.widthAnchor.constraint(equalToConstant: 14),
+            imageVinView.heightAnchor.constraint(equalToConstant: 13),
         ])
     }
 
@@ -124,6 +206,14 @@ class CarsCustomCell: UITableViewCell {
     private func configureLayoutCollectionView() {
         layoutCollectionView.scrollDirection = .horizontal
         layoutCollectionView.estimatedItemSize = .zero
+    }
+
+    private func settingStackTwoViews() {
+        [topView, vinView].forEach { stackTwoViews.addArrangedSubview($0) }
+        imageTopView.image = UIImage(systemName: "star.fill")
+        imageTopView.tintColor = .black
+        imageVinView.image = UIImage(systemName: "checkmark")
+        imageVinView.tintColor = .white
     }
 
     // MARK: - Public method
@@ -164,7 +254,7 @@ class CarsCustomCell: UITableViewCell {
 
         let mutableString = NSMutableAttributedString()
         [attrString1, attrString3, attrString4, attrString2, attrString5].forEach { mutableString.append($0) }
-        
+
         priceCarLabel.attributedText = mutableString
         nameCarLabel.text = model.name.rawValue + model.restyling.rawValue
         photos = model.imageCar
