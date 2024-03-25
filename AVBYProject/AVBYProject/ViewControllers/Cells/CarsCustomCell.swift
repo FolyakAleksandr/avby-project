@@ -69,7 +69,6 @@ class CarsCustomCell: UITableViewCell {
 
     private let infoCar = Car.addCar()
     private let dateSale = Car.dateSale()
-    private let priceCredit = Car.randomPriceCredit()
 
     private let line: UIView = {
         let line = UIView()
@@ -92,6 +91,11 @@ class CarsCustomCell: UITableViewCell {
     }()
 
     private let priceCreditLabel = UILabel()
+    
+    // MARK: - Variables
+    
+    var closure: ((Int) -> ())?
+    private var priceCredit = 0
 
     // MARK: - Life cycle
 
@@ -106,6 +110,7 @@ class CarsCustomCell: UITableViewCell {
         configureLayoutCollectionView()
         settingStackTwoViews()
         setupPlaceSaleLabel()
+        tapGestureRecognizer()
     }
 
     @available(*, unavailable)
@@ -272,7 +277,18 @@ class CarsCustomCell: UITableViewCell {
         placeSaleLabel.font = UIFont.systemFont(ofSize: 14)
         placeSaleLabel.textColor = UIColor(named: "colorPlaceSaleLabel")
     }
-
+    
+    private func tapGestureRecognizer() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapToCreditView))
+        creditView.addGestureRecognizer(tap)
+    }
+    
+    // MARK: - @objc methods
+    
+    @objc func tapToCreditView() {
+        closure?(priceCredit)
+    }
+    
     // MARK: - Public method
 
     func setupInfoCar(model: Car) {
@@ -295,7 +311,7 @@ class CarsCustomCell: UITableViewCell {
         let ot = "от "
         let usd = " USD"
         let month = "/месяц"
-        let priceCredit = priceCredit
+        priceCredit = model.priceCredit
 
         let attributesForPriceRubles: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor(named: "colorText") ?? UIColor.black,
@@ -324,7 +340,7 @@ class CarsCustomCell: UITableViewCell {
         let attrString4 = NSAttributedString(string: strAbout, attributes: attibutesForZnakAndDollar)
         let attrString5 = NSAttributedString(string: strDollar, attributes: attibutesForZnakAndDollar)
 
-        let attrForPrice = NSAttributedString(string: priceCredit, attributes: attributesForPriceCreditLabel)
+        let attrForPrice = NSAttributedString(string: String(priceCredit), attributes: attributesForPriceCreditLabel)
         let attrForUsd = NSAttributedString(string: usd, attributes: attributesForPriceCreditLabel)
         let attrForOt = NSAttributedString(string: ot, attributes: attributesForWords)
         let attrForMonth = NSAttributedString(string: month, attributes: attributesForWords)

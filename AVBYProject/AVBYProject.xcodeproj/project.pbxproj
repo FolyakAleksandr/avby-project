@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		011A8E142BB1C43A002C1346 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011A8E132BB1C43A002C1346 /* Alert.swift */; };
 		012888512BB00A17006D7D03 /* CarsCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012888502BB00A17006D7D03 /* CarsCustomCell.swift */; };
 		012888532BB05070006D7D03 /* PhotosCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012888522BB05070006D7D03 /* PhotosCustomCell.swift */; };
 		012888552BB06BCC006D7D03 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012888542BB06BCC006D7D03 /* Car.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		011A8E132BB1C43A002C1346 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		012888502BB00A17006D7D03 /* CarsCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsCustomCell.swift; sourceTree = "<group>"; };
 		012888522BB05070006D7D03 /* PhotosCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCustomCell.swift; sourceTree = "<group>"; };
 		012888542BB06BCC006D7D03 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				012888542BB06BCC006D7D03 /* Car.swift */,
+				011A8E132BB1C43A002C1346 /* Alert.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				017FBF352BA5DF0D0017F3C8 /* AdvertisementsViewController.swift in Sources */,
 				012888552BB06BCC006D7D03 /* Car.swift in Sources */,
 				017FBF1B2BA5CC930017F3C8 /* SceneDelegate.swift in Sources */,
+				011A8E142BB1C43A002C1346 /* Alert.swift in Sources */,
 				012888532BB05070006D7D03 /* PhotosCustomCell.swift in Sources */,
 				0173B7392BA5EB5D003CB472 /* Extension.swift in Sources */,
 				012888512BB00A17006D7D03 /* CarsCustomCell.swift in Sources */,

@@ -1,8 +1,10 @@
-//
-//  Alert.swift
-//  AVBYProject
-//
-//  Created by Александр Фоляк on 25.03.2024.
-//
+import UIKit
 
-import Foundation
+struct Alert {
+    static func showAlert(_ title: String, _ message: String) -> UIAlertController {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+        return alertController
+    }
+}

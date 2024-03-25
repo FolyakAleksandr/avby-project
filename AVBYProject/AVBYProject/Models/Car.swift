@@ -6,15 +6,16 @@ class Car {
     let imageCar: [UIImage?]
     let description: DescriptionCar
     let city: City
-
-        init(name: NameCars, restyling: RestylingCars, price: PriceRublesCar, imageCar: [UIImage?], description: DescriptionCar, city: City)
-    {
+    let priceCredit: Int
+    
+    init(name: NameCars, restyling: RestylingCars, price: PriceRublesCar, imageCar: [UIImage?], description: DescriptionCar, city: City, priceCredit: Int) {
         self.name = name
         self.restyling = restyling
         self.price = price
         self.imageCar = imageCar
         self.description = description
         self.city = city
+        self.priceCredit = priceCredit
     }
 
     static func addCar() -> [Car] {
@@ -32,7 +33,7 @@ class Car {
                 typeEngine: .gasoline,
                 body: .cupe,
                 mileage: .nissan350z),
-            city: .moscow),
+                  city: .moscow, priceCredit: Credit.randomPriceCredit()),
 
             .init(name: .toyotaAltezza, restyling: .no, price: .toyotaAltezza, imageCar: [
                 UIImage(named: "altezza.1"),
@@ -47,7 +48,7 @@ class Car {
                 typeEngine: .gasoline,
                 body: .sedan,
                 mileage: .toyotaAltezza),
-            city: .omsk),
+            city: .omsk, priceCredit: Credit.randomPriceCredit()),
 
             .init(name: .toyotaCresta, restyling: .yes, price: .toyotaCresta, imageCar: [
                 UIImage(named: "cresta100.1"),
@@ -62,7 +63,7 @@ class Car {
                 typeEngine: .gasoline,
                 body: .sedan,
                 mileage: .toyotaCresta),
-            city: .vladivostok),
+            city: .vladivostok, priceCredit: Credit.randomPriceCredit()),
 
             .init(name: .mitsubishiEvo, restyling: .no, price: .mitsubishiEvo, imageCar: [
                 UIImage(named: "evo10.1"),
@@ -77,7 +78,7 @@ class Car {
                 typeEngine: .gasoline,
                 body: .sedan,
                 mileage: .mitsubishiEvo),
-            city: .spb),
+            city: .spb, priceCredit: Credit.randomPriceCredit()),
 
             .init(name: .nissanGTR, restyling: .no, price: .nissanGTR, imageCar: [
                 UIImage(named: "gtr.1"),
@@ -92,7 +93,7 @@ class Car {
                 typeEngine: .gasoline,
                 body: .cupe,
                 mileage: .nissanGTR),
-            city: .moscow),
+            city: .moscow, priceCredit: Credit.randomPriceCredit()),
 
             .init(name: .toyotaMark, restyling: .no, price: .toyotaMark, imageCar: [
                 UIImage(named: "mark100.1"),
@@ -107,7 +108,7 @@ class Car {
                 typeEngine: .gasoline,
                 body: .sedan,
                 mileage: .toyotaMark),
-            city: .vladivostok),
+            city: .vladivostok, priceCredit: Credit.randomPriceCredit()),
 
             .init(name: .mazdaRX8, restyling: .yes, price: .mazdaRX8, imageCar: [
                 UIImage(named: "rx8.1"),
@@ -122,7 +123,7 @@ class Car {
                 typeEngine: .gasoline,
                 body: .cupe,
                 mileage: .mazdaRX8),
-            city: .omsk)
+            city: .omsk, priceCredit: Credit.randomPriceCredit())
         ]
     }
 
@@ -131,12 +132,14 @@ class Car {
         let month = ["дек", "янв", "фев", "мар", "апр", "мая", "июня", "июля", "авг", "сен", "окт", "ноя"].randomElement() ?? ""
         return "\(String(number)) \(month)"
     }
-
-    static func randomPriceCredit() -> String {
+}
+class Credit {
+    static func randomPriceCredit() -> Int {
         let number = Int.random(in: 250..<500)
-        return "\(number)"
+        return number
     }
 }
+
 
 enum NameCars: String {
     case nissan350z = "Nissan 350Z I"

@@ -46,6 +46,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.backgroundColor = UIColor(named: "backgroundView")
         cell.selectionStyle = .none
         cell.setupInfoCar(model: infoCar[indexPath.row])
+        cell.closure = { credit in
+            self.present(Alert.showAlert("Кредит!", "Данный авто будет обходиться \(credit) USD/месяц"), animated: true)
+        }
         return cell
     }
 }
