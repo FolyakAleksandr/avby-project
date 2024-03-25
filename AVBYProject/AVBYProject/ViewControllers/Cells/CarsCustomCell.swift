@@ -14,7 +14,11 @@ class CarsCustomCell: UITableViewCell {
     private let layoutCollectionView = UICollectionViewFlowLayout()
     private let carPhotosCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
-    let array = ["mark100.1", "mark100.2", "mark100.3", "mark100.4", "mark100.5"]
+    private var photos = [UIImage?]() {
+        didSet {
+            carPhotosCollectionView.reloadData()
+        }
+    }
 
     // MARK: - Life cycle
 
@@ -25,7 +29,6 @@ class CarsCustomCell: UITableViewCell {
         appearanceMainView()
         appearanceBookmarkButton()
         configureNameCarLabel()
-        configurePriceCarLabel()
         configureCollectionView()
         configureLayoutCollectionView()
     }
@@ -101,10 +104,35 @@ class CarsCustomCell: UITableViewCell {
         nameCarLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
     }
 
-    private func configurePriceCarLabel() {
-        let priceRubles = String(17630) + " "
-        let priceDollars = String(5450) + " "
-        let strRubles = "р.  "
+    private func configureCollectionView() {
+        carPhotosCollectionView.dataSource = self
+        carPhotosCollectionView.delegate = self
+        carPhotosCollectionView.register(PhotosCustomCell.self, forCellWithReuseIdentifier: "PhotosCustomCell")
+        carPhotosCollectionView.setCollectionViewLayout(layoutCollectionView, animated: true)
+        carPhotosCollectionView.showsHorizontalScrollIndicator = false
+        carPhotosCollectionView.backgroundColor = .clear
+        carPhotosCollectionView.layer.cornerRadius = 5
+    }
+
+    private func configureLayoutCollectionView() {
+        layoutCollectionView.scrollDirection = .horizontal
+        layoutCollectionView.estimatedItemSize = .zero
+    }
+
+    // MARK: - Public method
+
+    func setupInfoCar(model: Car) {
+        nameCarLabel.text = model.name.rawValue + model.restyling.rawValue
+        photos = model.imageCar
+
+        let price: NSNumber = model.price.rawValue as NSNumber
+        let numberFormatter = NumberFormatter()
+        numberFormatter.groupingSeparator = " "
+        numberFormatter.groupingSize = 3
+        numberFormatter.usesGroupingSeparator = true
+        let priceRubles = numberFormatter.string(from: price) ?? ""
+        let priceDollars = numberFormatter.string(from: ((price as! Int) / 92) as NSNumber) ?? ""
+        let strRubles = " р.  "
         let strAbout = "≈ "
         let strDollar = "$"
 
@@ -128,29 +156,8 @@ class CarsCustomCell: UITableViewCell {
         let attrString5 = NSAttributedString(string: strDollar, attributes: attibutesForZnakAndDollar)
 
         let mutableString = NSMutableAttributedString()
-        mutableString.append(attrString1)
-        mutableString.append(attrString3)
-        mutableString.append(attrString4)
-        mutableString.append(attrString2)
-        mutableString.append(attrString5)
-
+        [attrString1, attrString3, attrString4, attrString2, attrString5].forEach { mutableString.append($0) }
         priceCarLabel.attributedText = mutableString
-    }
-
-    private func configureCollectionView() {
-        carPhotosCollectionView.dataSource = self
-        carPhotosCollectionView.delegate = self
-        carPhotosCollectionView.register(PhotosCustomCell.self, forCellWithReuseIdentifier: "PhotosCustomCell")
-        carPhotosCollectionView.setCollectionViewLayout(layoutCollectionView, animated: true)
-        carPhotosCollectionView.showsHorizontalScrollIndicator = false
-        carPhotosCollectionView.backgroundColor = .clear
-        carPhotosCollectionView.layer.cornerRadius = 5
-    }
-
-    private func configureLayoutCollectionView() {
-        layoutCollectionView.scrollDirection = .horizontal
-        layoutCollectionView.minimumLineSpacing = 0
-        layoutCollectionView.collectionView?.reloadData()
     }
 }
 
@@ -158,28 +165,28 @@ class CarsCustomCell: UITableViewCell {
 
 extension CarsCustomCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        array.count
+        photos.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotosCustomCell", for: indexPath) as? PhotosCustomCell else { return UICollectionViewCell() }
-        cell.setupImage(image: UIImage(named: "\(array[indexPath.item])"))
+        cell.setupImage(image: photos[indexPath.item] ?? UIImage())
+        cell.clipsToBounds = true
         return cell
     }
 }
 
 extension CarsCustomCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let image = UIImage(named: "\(array[indexPath.item])")
+        let image = photos[indexPath.item]
         let imageWidth = (image?.size.width ?? 0)
         var itemWidth = 0.0
 
         if imageWidth > 1000 {
-            itemWidth = imageWidth / 3.7
+            itemWidth = imageWidth / 3.6
         } else {
             itemWidth = imageWidth / 4.0
         }
-
         return CGSize(width: itemWidth, height: 230)
     }
 }

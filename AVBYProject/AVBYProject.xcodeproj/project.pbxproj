@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		012888512BB00A17006D7D03 /* CarsCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012888502BB00A17006D7D03 /* CarsCustomCell.swift */; };
 		012888532BB05070006D7D03 /* PhotosCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012888522BB05070006D7D03 /* PhotosCustomCell.swift */; };
+		012888552BB06BCC006D7D03 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012888542BB06BCC006D7D03 /* Car.swift */; };
 		0173B7392BA5EB5D003CB472 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0173B7382BA5EB5D003CB472 /* Extension.swift */; };
 		017FBF192BA5CC930017F3C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FBF182BA5CC930017F3C8 /* AppDelegate.swift */; };
 		017FBF1B2BA5CC930017F3C8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017FBF1A2BA5CC930017F3C8 /* SceneDelegate.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		012888502BB00A17006D7D03 /* CarsCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsCustomCell.swift; sourceTree = "<group>"; };
 		012888522BB05070006D7D03 /* PhotosCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCustomCell.swift; sourceTree = "<group>"; };
+		012888542BB06BCC006D7D03 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		0173B7382BA5EB5D003CB472 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		017FBF152BA5CC930017F3C8 /* AVBYProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVBYProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		017FBF182BA5CC930017F3C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 		017FBF2F2BA5CF570017F3C8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				012888542BB06BCC006D7D03 /* Car.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				017FBF372BA5DF3F0017F3C8 /* DialoguesViewController.swift in Sources */,
 				017FBF192BA5CC930017F3C8 /* AppDelegate.swift in Sources */,
 				017FBF352BA5DF0D0017F3C8 /* AdvertisementsViewController.swift in Sources */,
+				012888552BB06BCC006D7D03 /* Car.swift in Sources */,
 				017FBF1B2BA5CC930017F3C8 /* SceneDelegate.swift in Sources */,
 				012888532BB05070006D7D03 /* PhotosCustomCell.swift in Sources */,
 				0173B7392BA5EB5D003CB472 /* Extension.swift in Sources */,

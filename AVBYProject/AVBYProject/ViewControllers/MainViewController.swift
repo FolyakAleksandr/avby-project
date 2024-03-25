@@ -4,6 +4,7 @@ class MainViewController: UIViewController {
     // MARK: - Private properties
 
     private let carTableView = UITableView()
+    private let infoCar = Car.addCar()
 
     // MARK: - Life cycle
 
@@ -36,13 +37,14 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return infoCar.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CarsCustomCell", for: indexPath) as? CarsCustomCell else { return UITableViewCell() }
         cell.backgroundColor = UIColor(named: "backgroundView")
         cell.selectionStyle = .none
+        cell.setupInfoCar(model: infoCar[indexPath.row])
         return cell
     }
 }

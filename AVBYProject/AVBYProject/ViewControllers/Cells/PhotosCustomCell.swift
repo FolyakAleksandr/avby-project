@@ -28,10 +28,10 @@ final class PhotosCustomCell: UICollectionViewCell {
             imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
             imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
         ])
+        imageView.contentMode = .scaleAspectFill
     }
 
-    func setupImage(image: UIImage?) {
-        imageView.image = image ?? UIImage()
-        imageView.contentMode = .scaleAspectFill
+    func setupImage(image: UIImage) {
+        imageView.image = image
     }
 }
