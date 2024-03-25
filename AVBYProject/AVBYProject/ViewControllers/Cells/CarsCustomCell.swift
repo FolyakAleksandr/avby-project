@@ -19,6 +19,8 @@ class CarsCustomCell: UITableViewCell {
             carPhotosCollectionView.reloadData()
         }
     }
+    private let descriptionLabel = UILabel()
+    private let infoCar = Car.addCar()
 
     // MARK: - Life cycle
 
@@ -47,7 +49,7 @@ class CarsCustomCell: UITableViewCell {
         bookmarkButton.addSubview(imageViewForButton)
         imageViewForButton.translatesAutoresizingMaskIntoConstraints = false
 
-        for elem in [bookmarkButton, nameCarLabel, priceCarLabel, carPhotosCollectionView] {
+        for elem in [bookmarkButton, nameCarLabel, priceCarLabel, carPhotosCollectionView, descriptionLabel] {
             mainView.addSubview(elem)
             elem.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -84,8 +86,13 @@ class CarsCustomCell: UITableViewCell {
             carPhotosCollectionView.topAnchor.constraint(equalTo: priceCarLabel.bottomAnchor, constant: 10),
             carPhotosCollectionView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 10),
             carPhotosCollectionView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -10),
-            carPhotosCollectionView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -16),
-            carPhotosCollectionView.heightAnchor.constraint(equalToConstant: 230)
+            carPhotosCollectionView.heightAnchor.constraint(equalToConstant: 230),
+            
+            // descriptionLabel
+            descriptionLabel.topAnchor.constraint(equalTo: carPhotosCollectionView.bottomAnchor, constant: 10),
+            descriptionLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 10),
+            descriptionLabel.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -10),
+            descriptionLabel.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -16)
         ])
     }
 
@@ -122,14 +129,14 @@ class CarsCustomCell: UITableViewCell {
     // MARK: - Public method
 
     func setupInfoCar(model: Car) {
-        nameCarLabel.text = model.name.rawValue + model.restyling.rawValue
-        photos = model.imageCar
-
+        // NSAttributed for price car
         let price: NSNumber = model.price.rawValue as NSNumber
+        let mileage: NSNumber = model.description.mileage.rawValue as NSNumber
         let numberFormatter = NumberFormatter()
         numberFormatter.groupingSeparator = " "
         numberFormatter.groupingSize = 3
         numberFormatter.usesGroupingSeparator = true
+        let resultMileage = numberFormatter.string(from: mileage) ?? ""
         let priceRubles = numberFormatter.string(from: price) ?? ""
         let priceDollars = numberFormatter.string(from: ((price as! Int) / 92) as NSNumber) ?? ""
         let strRubles = " р.  "
@@ -157,7 +164,12 @@ class CarsCustomCell: UITableViewCell {
 
         let mutableString = NSMutableAttributedString()
         [attrString1, attrString3, attrString4, attrString2, attrString5].forEach { mutableString.append($0) }
+        
         priceCarLabel.attributedText = mutableString
+        nameCarLabel.text = model.name.rawValue + model.restyling.rawValue
+        photos = model.imageCar
+        descriptionLabel.text = "\(model.description.year.rawValue) г., \(model.description.transmission.rawValue), \(model.description.capacity.rawValue) л, \(model.description.typeEngine.rawValue), \(model.description.body.rawValue), \(resultMileage) км"
+        descriptionLabel.font = UIFont.systemFont(ofSize: 15)
     }
 }
 
