@@ -91,10 +91,12 @@ class CarsCustomCell: UITableViewCell {
     }()
 
     private let priceCreditLabel = UILabel()
-    
+
     // MARK: - Variables
-    
-    var closure: ((Int) -> ())?
+
+    var closure: (() -> ())?
+    var closureBookmarkButton: (() -> ())?
+    var counterForBookmarkButton = 0
     private var priceCredit = 0
 
     // MARK: - Life cycle
@@ -111,6 +113,7 @@ class CarsCustomCell: UITableViewCell {
         settingStackTwoViews()
         setupPlaceSaleLabel()
         tapGestureRecognizer()
+        logicBookmarkButton()
     }
 
     @available(*, unavailable)
@@ -277,18 +280,33 @@ class CarsCustomCell: UITableViewCell {
         placeSaleLabel.font = UIFont.systemFont(ofSize: 14)
         placeSaleLabel.textColor = UIColor(named: "colorPlaceSaleLabel")
     }
-    
+
     private func tapGestureRecognizer() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapToCreditView))
         creditView.addGestureRecognizer(tap)
     }
-    
-    // MARK: - @objc methods
-    
-    @objc func tapToCreditView() {
-        closure?(priceCredit)
+
+    private func logicBookmarkButton() {
+        bookmarkButton.addTarget(self, action: #selector(tapOnBookmarkButton), for: .touchDown)
     }
-    
+
+    // MARK: - @objc methods
+
+    @objc func tapToCreditView() {
+        closure?()
+    }
+
+    @objc func tapOnBookmarkButton() {
+        closureBookmarkButton?()
+        if counterForBookmarkButton == 0 {
+            imageViewForButton.tintColor = .systemRed
+            counterForBookmarkButton += 1
+        } else {
+            imageViewForButton.tintColor = UIColor(named: "tint-bookmarkButton")
+            counterForBookmarkButton = 0
+        }
+    }
+
     // MARK: - Public method
 
     func setupInfoCar(model: Car) {

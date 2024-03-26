@@ -6,6 +6,10 @@ class MainViewController: UIViewController {
     private let carTableView = UITableView()
     private let infoCar = Car.addCar()
 
+    // MARK: - Variables
+
+    var counter = 0
+
     // MARK: - Life cycle
 
     override func viewDidLoad() {
@@ -46,8 +50,17 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.backgroundColor = UIColor(named: "backgroundView")
         cell.selectionStyle = .none
         cell.setupInfoCar(model: infoCar[indexPath.row])
-        cell.closure = { credit in
-            self.present(Alert.showAlert("Кредит!", "Данный авто будет обходиться \(credit) USD/месяц"), animated: true)
+        cell.closure = {
+            self.present(Alert.showAlert("Кредит!", "Данный авто будет обходиться в \(self.infoCar[indexPath.row].priceCredit) USD/месяц"), animated: true)
+        }
+        cell.closureBookmarkButton = {
+            if self.counter == 0 {
+                self.present(Alert.showAlert("Успех!", "Вы добавили \(self.infoCar[indexPath.row].name.rawValue) в избранное"), animated: true)
+                self.counter += 1
+            } else {
+                self.present(Alert.showAlert("Жаль!", "Вы удалили \(self.infoCar[indexPath.row].name.rawValue) из избранного"), animated: true)
+                self.counter = 0
+            }
         }
         return cell
     }
