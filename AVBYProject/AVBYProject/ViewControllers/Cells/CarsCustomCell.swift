@@ -96,6 +96,8 @@ class CarsCustomCell: UITableViewCell {
 
     var closure: (() -> ())?
     var closureBookmarkButton: (() -> ())?
+    var closureForMainView: (() -> ())?
+    var tapMainView = UITapGestureRecognizer()
     var counterForBookmarkButton = 0
     private var priceCredit = 0
 
@@ -114,6 +116,7 @@ class CarsCustomCell: UITableViewCell {
         setupPlaceSaleLabel()
         tapGestureRecognizer()
         logicBookmarkButton()
+        settingGestureRecognizer()
     }
 
     @available(*, unavailable)
@@ -290,6 +293,11 @@ class CarsCustomCell: UITableViewCell {
         bookmarkButton.addTarget(self, action: #selector(tapOnBookmarkButton), for: .touchDown)
     }
 
+    private func settingGestureRecognizer() {
+        tapMainView = UITapGestureRecognizer(target: self, action: #selector(tapOnMainView))
+        mainView.addGestureRecognizer(tapMainView)
+    }
+
     // MARK: - @objc methods
 
     @objc func tapToCreditView() {
@@ -305,6 +313,10 @@ class CarsCustomCell: UITableViewCell {
             imageViewForButton.tintColor = UIColor(named: "tint-bookmarkButton")
             counterForBookmarkButton = 0
         }
+    }
+
+    @objc func tapOnMainView() {
+        closureForMainView?()
     }
 
     // MARK: - Public method

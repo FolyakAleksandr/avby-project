@@ -119,7 +119,7 @@ class MainViewController: UIViewController {
             imageForParametersButton.leadingAnchor.constraint(equalTo: parametersButton.leadingAnchor, constant: 20),
             imageForParametersButton.heightAnchor.constraint(equalToConstant: 23),
             imageForParametersButton.widthAnchor.constraint(equalToConstant: 23),
-            
+
             // textParametersButton
             textParametersButton.centerYAnchor.constraint(equalTo: parametersButton.centerYAnchor),
             textParametersButton.trailingAnchor.constraint(equalTo: parametersButton.trailingAnchor, constant: -20),
@@ -132,16 +132,18 @@ class MainViewController: UIViewController {
 
         [imageForSearchButton, imageForParametersButton].forEach { $0.tintColor = .white }
     }
-    
+
     private func logicButtons() {
         searchButton.addTarget(self, action: #selector(tapOnSearchButton), for: .touchUpInside)
         parametersButton.addTarget(self, action: #selector(tapOnParametersButton), for: .touchUpInside)
     }
-    
+
     // MARK: - @objc methods
+
     @objc func tapOnSearchButton() {
         present(Alert.showAlert("Это поиск", "Скоро здесь будет добавлен поиск по названию автомобиля"), animated: true)
     }
+
     @objc func tapOnParametersButton() {
         present(Alert.showAlert("Параметры", "Скоро здесь будет добавлен поиск по параметрам автомобиля"), animated: true)
     }
@@ -159,10 +161,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.backgroundColor = UIColor(named: "backgroundView")
         cell.selectionStyle = .none
         cell.setupInfoCar(model: infoCar[indexPath.row])
-        cell.closure = {
+        cell.closure = { [weak self] in
+            guard let self = self else { return }
             self.present(Alert.showAlert("Кредит!", "Данный авто будет обходиться в \(self.infoCar[indexPath.row].priceCredit) USD/месяц"), animated: true)
         }
-        cell.closureBookmarkButton = {
+        cell.closureBookmarkButton = { [weak self] in
+            guard let self = self else { return }
             if self.counter == 0 {
                 self.present(Alert.showAlert("Успех!", "Вы добавили \(self.infoCar[indexPath.row].name.rawValue) в избранное"), animated: true)
                 self.counter += 1
@@ -171,6 +175,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 self.counter = 0
             }
         }
+
+        cell.closureForMainView = { [weak self] in
+            guard let self = self else { return }
+            self.navigationController?.pushViewController(StatringViewController(), animated: true)
+        }
+
         return cell
     }
 }
