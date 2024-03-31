@@ -32,7 +32,7 @@ class MainViewController: UIViewController {
     private let textParametersButton: UILabel = {
         let textParametersButton = UILabel()
         textParametersButton.text = "Параметры"
-        textParametersButton.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.medium)
+        textParametersButton.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.medium)
         textParametersButton.textColor = .white
         return textParametersButton
     }()
@@ -46,15 +46,27 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBackgroundViewController()
-        configureCarTableView()
-        layoutUIElement()
-        settingImageViews()
-        logicButtons()
+
+        setupUI()
     }
 
     // MARK: - Methods
 
-    private func configureCarTableView() {
+    private func setupUI() {
+        layoutCarTableView()
+        layoutViewFromBelowWindow()
+        layoutSearchButton()
+        layoutParametersButton()
+        layoutImageForSearchButton()
+        layoutImageForParametersButton()
+        layoutTextParametersButton()
+
+        configureCarTableView()
+        settingImageViews()
+        logicButtons()
+    }
+
+    private func layoutCarTableView() {
         view.addSubview(carTableView)
         carTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -63,7 +75,9 @@ class MainViewController: UIViewController {
             carTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             carTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
         ])
+    }
 
+    private func configureCarTableView() {
         carTableView.delegate = self
         carTableView.dataSource = self
         carTableView.separatorStyle = .none
@@ -72,55 +86,65 @@ class MainViewController: UIViewController {
         carTableView.showsVerticalScrollIndicator = false
     }
 
-    private func layoutUIElement() {
+    private func layoutViewFromBelowWindow() {
         view.addSubview(viewFromBelowWindow)
         viewFromBelowWindow.translatesAutoresizingMaskIntoConstraints = false
-
-        for elem in [searchButton, parametersButton] {
-            viewFromBelowWindow.addSubview(elem)
-            elem.translatesAutoresizingMaskIntoConstraints = false
-        }
-
-        searchButton.addSubview(imageForSearchButton)
-        imageForSearchButton.translatesAutoresizingMaskIntoConstraints = false
-
-        for elem in [imageForParametersButton, textParametersButton] {
-            parametersButton.addSubview(elem)
-            elem.translatesAutoresizingMaskIntoConstraints = false
-        }
-
         NSLayoutConstraint.activate([
-            // viewFromBelowWindow
-            viewFromBelowWindow.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -95),
+            viewFromBelowWindow.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             viewFromBelowWindow.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.55),
             viewFromBelowWindow.heightAnchor.constraint(equalToConstant: 45),
             viewFromBelowWindow.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        ])
+    }
 
-            // searchButton
+    private func layoutSearchButton() {
+        viewFromBelowWindow.addSubview(searchButton)
+        searchButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
             searchButton.topAnchor.constraint(equalTo: viewFromBelowWindow.topAnchor, constant: 0),
             searchButton.leadingAnchor.constraint(equalTo: viewFromBelowWindow.leadingAnchor, constant: 0),
             searchButton.bottomAnchor.constraint(equalTo: viewFromBelowWindow.bottomAnchor, constant: 0),
             searchButton.widthAnchor.constraint(equalTo: viewFromBelowWindow.widthAnchor, multiplier: 0.27),
+        ])
+    }
 
-            // parametersButton
+    private func layoutParametersButton() {
+        viewFromBelowWindow.addSubview(parametersButton)
+        parametersButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
             parametersButton.topAnchor.constraint(equalTo: viewFromBelowWindow.topAnchor, constant: 0),
             parametersButton.trailingAnchor.constraint(equalTo: viewFromBelowWindow.trailingAnchor, constant: 0),
             parametersButton.bottomAnchor.constraint(equalTo: viewFromBelowWindow.bottomAnchor, constant: 0),
             parametersButton.widthAnchor.constraint(equalTo: viewFromBelowWindow.widthAnchor, multiplier: 0.71),
+        ])
+    }
 
-            // imageForSearchButton
+    private func layoutImageForSearchButton() {
+        searchButton.addSubview(imageForSearchButton)
+        imageForSearchButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
             imageForSearchButton.centerXAnchor.constraint(equalTo: searchButton.centerXAnchor),
             imageForSearchButton.centerYAnchor.constraint(equalTo: searchButton.centerYAnchor),
-            imageForSearchButton.heightAnchor.constraint(equalToConstant: 23),
-            imageForSearchButton.widthAnchor.constraint(equalToConstant: 23),
+            imageForSearchButton.heightAnchor.constraint(equalToConstant: 18),
+            imageForSearchButton.widthAnchor.constraint(equalToConstant: 18),
+        ])
+    }
 
-            // imageForParametersButton
+    private func layoutImageForParametersButton() {
+        parametersButton.addSubview(imageForParametersButton)
+        imageForParametersButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
             imageForParametersButton.centerYAnchor.constraint(equalTo: parametersButton.centerYAnchor),
             imageForParametersButton.leadingAnchor.constraint(equalTo: parametersButton.leadingAnchor, constant: 20),
-            imageForParametersButton.heightAnchor.constraint(equalToConstant: 23),
-            imageForParametersButton.widthAnchor.constraint(equalToConstant: 23),
+            imageForParametersButton.heightAnchor.constraint(equalToConstant: 18),
+            imageForParametersButton.widthAnchor.constraint(equalToConstant: 18),
+        ])
+    }
 
-            // textParametersButton
+    private func layoutTextParametersButton() {
+        parametersButton.addSubview(textParametersButton)
+        textParametersButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
             textParametersButton.centerYAnchor.constraint(equalTo: parametersButton.centerYAnchor),
             textParametersButton.trailingAnchor.constraint(equalTo: parametersButton.trailingAnchor, constant: -20),
         ])
@@ -138,13 +162,11 @@ class MainViewController: UIViewController {
         parametersButton.addTarget(self, action: #selector(tapOnParametersButton), for: .touchUpInside)
     }
 
-    // MARK: - @objc methods
-
-    @objc func tapOnSearchButton() {
+    @objc private func tapOnSearchButton() {
         present(Alert.showAlert("Это поиск", "Скоро здесь будет добавлен поиск по названию автомобиля"), animated: true)
     }
 
-    @objc func tapOnParametersButton() {
+    @objc private func tapOnParametersButton() {
         present(Alert.showAlert("Параметры", "Скоро здесь будет добавлен поиск по параметрам автомобиля"), animated: true)
     }
 }

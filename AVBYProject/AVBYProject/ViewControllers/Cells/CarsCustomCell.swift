@@ -92,14 +92,17 @@ class CarsCustomCell: UITableViewCell {
 
     private let priceCreditLabel = UILabel()
 
-    // MARK: - Variables
+    // MARK: - Private Variables
 
-    var closure: (() -> ())?
-    var closureBookmarkButton: (() -> ())?
-    var closureForMainView: (() -> ())?
-    var tapMainView = UITapGestureRecognizer()
-    var counterForBookmarkButton = 0
+    private var tapMainView = UITapGestureRecognizer()
+    private var counterForBookmarkButton = 0
     private var priceCredit = 0
+
+    // MARK: - Public Variables
+
+    public var closure: (() -> ())?
+    public var closureBookmarkButton: (() -> ())?
+    public var closureForMainView: (() -> ())?
 
     // MARK: - Life cycle
 
@@ -107,6 +110,17 @@ class CarsCustomCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         layoutAllUIElements()
+        setupUI()
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Methods
+    
+    private func setupUI() {
         appearanceMainView()
         appearanceBookmarkButton()
         configureNameCarLabel()
@@ -118,13 +132,6 @@ class CarsCustomCell: UITableViewCell {
         logicBookmarkButton()
         settingGestureRecognizer()
     }
-
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    // MARK: - Methods
 
     private func layoutAllUIElements() {
         contentView.addSubview(mainView)
@@ -300,11 +307,11 @@ class CarsCustomCell: UITableViewCell {
 
     // MARK: - @objc methods
 
-    @objc func tapToCreditView() {
+    @objc private func tapToCreditView() {
         closure?()
     }
 
-    @objc func tapOnBookmarkButton() {
+    @objc private func tapOnBookmarkButton() {
         closureBookmarkButton?()
         if counterForBookmarkButton == 0 {
             imageViewForButton.tintColor = .systemRed
@@ -315,7 +322,7 @@ class CarsCustomCell: UITableViewCell {
         }
     }
 
-    @objc func tapOnMainView() {
+    @objc private func tapOnMainView() {
         closureForMainView?()
     }
 

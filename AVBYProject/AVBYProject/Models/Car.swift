@@ -1,4 +1,5 @@
 import UIKit.UIImage
+
 class Car {
     let name: NameCars
     let restyling: RestylingCars
@@ -7,7 +8,7 @@ class Car {
     let description: DescriptionCar
     let city: City
     let priceCredit: Int
-    
+
     init(name: NameCars, restyling: RestylingCars, price: PriceRublesCar, imageCar: [UIImage?], description: DescriptionCar, city: City, priceCredit: Int) {
         self.name = name
         self.restyling = restyling
@@ -33,7 +34,7 @@ class Car {
                 typeEngine: .gasoline,
                 body: .cupe,
                 mileage: .nissan350z),
-                  city: .moscow, priceCredit: Credit.randomPriceCredit()),
+            city: .moscow, priceCredit: Credit.randomPriceCredit()),
 
             .init(name: .toyotaAltezza, restyling: .no, price: .toyotaAltezza, imageCar: [
                 UIImage(named: "altezza.1"),
@@ -133,13 +134,13 @@ class Car {
         return "\(String(number)) \(month)"
     }
 }
+
 class Credit {
     static func randomPriceCredit() -> Int {
         let number = Int.random(in: 250..<500)
         return number
     }
 }
-
 
 enum NameCars: String {
     case nissan350z = "Nissan 350Z I"

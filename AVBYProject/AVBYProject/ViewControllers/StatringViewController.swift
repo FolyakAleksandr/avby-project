@@ -11,13 +11,17 @@ final class StatringViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBackgroundViewController()
+        setupUI()
+    }
+
+    // MARK: - Methods
+    
+    private func setupUI() {
         layoutNextButton()
         appearanceNextButton()
         logicNextButton()
         setupNavigationBar()
     }
-
-    // MARK: - Methods
 
     private func layoutNextButton() {
         view.addSubview(nextButton)
@@ -47,7 +51,7 @@ final class StatringViewController: UIViewController {
         navigationItem.backButtonTitle = ""
     }
 
-    @objc func tappedNextButton() {
+    @objc private func tappedNextButton() {
         navigationController?.pushViewController(tabBar.configureTabBarController(), animated: true)
     }
 }
